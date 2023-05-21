@@ -35,4 +35,9 @@ if categories.empty?
   Category.create(name: "DIY")
 end
 
+keywords = Keyword.all
+if keywords.empty? 
+  Keyword.create(name: "mysql")
+  Keyword.create(name: "typescript")
+end
 
