@@ -11,3 +11,9 @@ users = User.all
 if users.empty? 
   User.create!(name: "admin_user", password: "password", email: "admin@g.com", admin: true)
 end
+
+posts = Post.all
+if posts.empty?
+  user_rel = User.find_by(id: 1)
+  Post.create!(title: "test post title 1", excerpt: "test post excerpt 1", content: "<p>text post content 1</p>", user_id: user_rel.id)
+end
