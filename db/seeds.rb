@@ -24,9 +24,13 @@ if comments.empty?
   post_rel = Post.first
   
   Comment.create(body: "test comment, no parent", user_id: user_rel.id, post_id: post_rel.id)
-else 
+
   comment_rel = Comment.first
-  user_rel = User.first
-  post_rel = Post.first
   Comment.create(body: "text child comment", user_id: user_rel.id, post_id: post_rel.id, parent_id: comment_rel.id)
+end
+
+categories = Category.all
+if categories.empty?
+  Category.create(name: "dev")
+  Category.create(name: "DIY")
 end
