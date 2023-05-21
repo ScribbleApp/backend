@@ -17,3 +17,27 @@ if posts.empty?
   user_rel = User.find_by(id: 1)
   Post.create!(title: "test post title 1", excerpt: "test post excerpt 1", content: "<p>text post content 1</p>", user_id: user_rel.id)
 end
+
+comments = Comment.all
+if comments.empty?
+  user_rel = User.first
+  post_rel = Post.first
+  
+  Comment.create(body: "test comment, no parent", user_id: user_rel.id, post_id: post_rel.id)
+
+  comment_rel = Comment.first
+  Comment.create(body: "text child comment", user_id: user_rel.id, post_id: post_rel.id, parent_id: comment_rel.id)
+end
+
+categories = Category.all
+if categories.empty?
+  Category.create(name: "dev")
+  Category.create(name: "DIY")
+end
+
+keywords = Keyword.all
+if keywords.empty? 
+  Keyword.create(name: "mysql")
+  Keyword.create(name: "typescript")
+end
+
