@@ -34,3 +34,5 @@ if categories.empty?
   Category.create(name: "dev")
   Category.create(name: "DIY")
 end
+
+
