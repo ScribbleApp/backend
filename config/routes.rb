@@ -10,4 +10,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  get 'posts', to: 'posts#index'
+  get 'posts/:id', to: 'posts#detail'
 end
