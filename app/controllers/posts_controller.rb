@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   def index
-    posts = Post.all.order(created_at: :desc)
+    posts = SearchedPostQuery.new(search_params).all
     posts = posts.map { | post |
       user = post.user
       {id:post.id, title:post.title, excerpt:post.excerpt, createdAt:post.created_at, user:{id:user.id, email:user.email, name:user.name}}
@@ -25,5 +25,9 @@ class PostsController < ApplicationController
     new_post = params.require(:post).permit(:title, :excerpt, :content)
     new_post['user_id'] = current_user.id
     new_post
+  end
+
+  def search_params
+    params.slice( :search)
   end
 end
