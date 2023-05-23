@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   get 'posts', to: 'posts#index'
   get 'posts/:id', to: 'posts#detail'
   post 'posts', to:'posts#create'
+
+  get 'posts/:id/comments', to: 'comments#post_index'
+  post 'posts/:id/comments', to: 'comments#create'
+  delete 'posts/:id/comments/:com_id', to: 'comments#destroy'
 end
