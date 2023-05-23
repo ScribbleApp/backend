@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   def detail
     post = Post.find(params[:id])
     user = post.user
-    render json: {id:post.id, title:post.title, excerpt:post.excerpt, content:post.content, createdAt:post.created_at, user:{id:user.id, email:user.email, name:user.name, categories: post.categories}}
+    render json: {id:post.id, title:post.title, excerpt:post.excerpt, content:post.content, createdAt:post.created_at, user:{id:user.id, email:user.email, name:user.name}, categories: post.categories}
   end
 
   def create
