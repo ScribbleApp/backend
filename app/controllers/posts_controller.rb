@@ -34,8 +34,7 @@ class PostsController < ApplicationController
 
   def create
     new_post = Post.new(post_params)
-    # ['post']
-    params['categories'].split(",").each do |el|
+    params['post']['categories'].split(",").each do |el|
       new_post.categories << Category.find(el)
     end
     new_post.save
