@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create, :destroy]
   def index
     posts = SearchedPostQuery.new(search_params).all
     posts = posts.map { | post |

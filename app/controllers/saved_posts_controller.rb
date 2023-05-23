@@ -14,9 +14,9 @@ class SavedPostsController < ApplicationController
     post = Post.find(params[:post_id])
     already_saved = SavedPost.all.where(post_id: params[:post_id], user_id: current_user.id)
     if post.user_id == current_user.id
-      render status:404
+      render status:400
     elsif already_saved != []
-      render status:404
+      render status:400
     else
       new_saved_post = SavedPost.create(saved_post_params)
       render json: new_saved_post, status: :ok
