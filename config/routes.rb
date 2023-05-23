@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   get '/users/saved', to: 'saved_posts#index'
   post '/users/saved', to: 'saved_posts#create'
-  delete 'users/saved/:id', to: 'saved_posts#destroy'
+  delete '/users/saved/:id', to: 'saved_posts#destroy'
   get '/users/:id', to: 'users#detail'
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   }
 
   get 'posts', to: 'posts#index'
+  get 'posts/categories', to: 'categories#index'
+  post 'posts/categories', to: 'categories#create'
+  delete 'posts/categories/:id', to: 'categories#destroy'
   get 'posts/:id', to: 'posts#detail'
   post 'posts', to:'posts#create'
+  delete 'posts/:id', to: 'posts#destroy'
+
 
   get 'posts/:id/comments', to: 'comments#post_index'
   post 'posts/:id/comments', to: 'comments#create'
