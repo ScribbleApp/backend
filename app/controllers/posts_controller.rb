@@ -5,9 +5,16 @@ class PostsController < ApplicationController
     posts = posts.map { | post |
       user = post.user
       categories = post.categories
-      {id:post.id, title:post.title, excerpt:post.excerpt, createdAt:post.created_at, user:{id:user.id, email:user.email, name:user.name}, categories:categories}
+      if params[:categories] != nil
+        searched_categories = categories.map {|el| el.name}
+        if params[:categories].split(",").all? { |e| searched_categories.include?(e) }
+          {id:post.id, title:post.title, excerpt:post.excerpt, createdAt:post.created_at, user:{id:user.id, email:user.email, name:user.name}, categories:categories}
+        end
+      else
+        {id:post.id, title:post.title, excerpt:post.excerpt, createdAt:post.created_at, user:{id:user.id, email:user.email, name:user.name}, categories:categories}
+      end
     }
-    render json: posts
+    render json: posts.select { |el| el != nil}, status: :ok
   end
 
   def detail
