@@ -28,5 +28,10 @@ Rails.application.routes.draw do
   post 'posts/:id/comments', to: 'comments#create'
   delete 'posts/:id/comments/:com_id', to: 'comments#destroy'
 
+  get 'subscriptions/:id', to: 'subcribtions#subscriptions'
+  get 'subscribers/:id', to: 'subcribtions#subscribers'
+  post 'subscriptions', to: 'subcribtions#create'
+  delete 'subscriptions/:id', to: 'subcribtions#destroy'
+
 
 end
