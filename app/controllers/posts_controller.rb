@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def create
     new_post = Post.new(post_params)
-    params['post']['categories'].split(",").each do |el|
+    params['categories'].split(",").each do |el|
       new_post.categories << Category.find(el)
     end
     new_post.save
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   def post_params
     # .require(:post)
 
-    new_post = params.require(:post).permit(:title, :excerpt, :content, :categories, :image)
+    new_post = params.permit(:title, :excerpt, :content, :categories, :image)
     new_post.delete('categories')
     new_post['user_id'] = current_user.id
     new_post
