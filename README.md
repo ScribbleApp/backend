@@ -1,24 +1,41 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Scribble (backend)
 
-* Ruby version
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-* System dependencies
+## Prerequisites:
+- ruby 3.0.0
+- PostgreSQL 13.11 or later
+- Rails 7.0.4.3
 
-* Configuration
+## Installing:
+1) Clone repository:
+   ```git clone https://github.com/Scribble/backend```
 
-* Database creation
+2) Build project:
 
-* Database initialization
+To build the application execute the following commands in CLI in the project folder(.../backend):
 
-* How to run the test suite
+- ``` rails db:create```  # this will create your database
+- ``` rails db:schema:load```  # this will create columns in your database
+- ``` rails db:seed```  # this will create mock data in database
+- ``` bundle install```  # this will install required libraries
 
-* Services (job queues, cache servers, search engines, etc.)
+### Running the Application:
+Now you can launch the server for example (default port is 3000) [http://localhost:3000](http://localhost:3000):
 
-* Deployment instructions
+- ```rails s```
 
-* ...
+### Built With:
+- Rails - Web framework
+
+## Our team
+* [Kyrylo Teplynskyi (Dev)](https://github.com/4Kirishy)
+* [Ruslan Morozov (Dev)](https://github.com/Ruslanchik01)
+* [Andrii Znayko (Dev)](https://github.com/ldaxss)
+
+
+## License
+__©️ Karazin university__
