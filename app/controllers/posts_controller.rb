@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    deleted_post = Post.find(params[:post_id])
+    deleted_post = Post.find(params[:id])
     if current_user.id == deleted_post.user_id || current_user.admin
       deleted_post.destroy
       render json: deleted_post, status: :ok
