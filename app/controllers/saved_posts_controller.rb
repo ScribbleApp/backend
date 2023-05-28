@@ -2,7 +2,7 @@ class SavedPostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    saved_posts = SavedPost.all.where(user_id: current_user.id).order(created_at: :desc)
+    saved_posts = SavedPost.all.where(user_id: current_user.id).order(created_at: :desc).includes(:post)
     saved_posts = saved_posts.map {|saved_post|
       post = saved_post.post
       {id:saved_post.id, post: {id:post.id, title:post.title}}

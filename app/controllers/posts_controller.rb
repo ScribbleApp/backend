@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
   def index
-    posts = SearchedPostQuery.new(search_params).all
+    posts = SearchedPostQuery.new(search_params).all.includes(:categories, :user)
     posts = posts.map { | post |
       post_with_img = PostSerializer.new(post).serializable_hash[:data][:attributes]
       categories = post.categories

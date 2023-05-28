@@ -2,7 +2,7 @@ class SubcribtionsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def subscriptions
-    subscriptions = Subscribtion.where(subscriber_id: params[:id])
+    subscriptions = Subscribtion.where(subscriber_id: params[:id]).includes(:user)
     subscriptions = subscriptions.map { | subscription |
       user = subscription.user
       {id:subscription.id, userId:user.id, email:user.email}
@@ -12,10 +12,25 @@ class SubcribtionsController < ApplicationController
 
   def subscribers
     subscribers = Subscribtion.where(user_id: params[:id])
+
+    users = subscribers.map { |el| el.subscriber_id }
+    users = "(" + users.join(",") + ")"
+    users = ActiveRecord::Base.connection.exec_query("SELECT * FROM users WHERE users.id in #{users}")
+
     subscribers = subscribers.map { | subscriber |
-      user = User.find(subscriber.subscriber_id)
-      {id:subscriber.id, userId:user.id, email:user.email}
+      element = ""
+      users.map { |user|
+        if subscriber.subscriber_id == user["id"]
+          element = {id:subscriber.id, userId:user["id"], email:user["email"]}
+        end
+      }
+      element
     }
+
+    # subscribers = subscribers.map { | subscriber |
+    #   user = User.find(subscriber.subscriber_id)
+    #   {id:subscriber.id, userId:user.id, email:user.email}
+    # }
     render json: subscribers, status: :ok
   end
 

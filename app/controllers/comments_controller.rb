@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :destroy]
 
   def post_index
-    comments = Comment.all.where(post_id: params[:id]).order(created_at: :desc)
+    comments = Comment.all.where(post_id: params[:id]).order(created_at: :desc).includes(:user)
     comments = comments.map {|comment|
       user = comment.user
       {id:comment.id, user: {id:user.id, email:user.email}, body:comment.body, post_id:comment.post_id, created_at:comment.created_at, updated_at:comment.updated_at, parent_id:comment.parent_id}
