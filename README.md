@@ -37,5 +37,28 @@ Now you can launch the server for example (default port is 3000) [http://localho
 * [Andrii Znayko (Dev)](https://github.com/ldaxss)
 
 
+## Routes
+### Маршрути для постів:
+- get '/posts': отримати список усіх постів 
+- get '/posts/:id': отримати деталі поста за заданим :id
+- post 'posts': створити новий пост
+- delete 'posts/:id': видалити пост за заданим :id 
+
+### Маршрути для категорій:
+- get 'posts/categories': отримати всі категорії постів
+- post 'posts/categories': створити нову категорію
+- delete 'posts/categories/:id': видалити категорію за заданим :id
+
+### Маршрути для коментарів:
+- get '/posts/:id/comments': oтримати всі коментарі для поста з заданим :id
+- post '/posts/:id/comments': cтворити новий коментар для поста з заданим :id 
+- delete '/posts/:id/comments/:com_id': видалити коментар з заданим :com_id для поста з заданим :id
+
+### Маршрути для підписок:
+- get 'subscriptions/:id': oтримати підписки користувача за заданим :id
+- get 'subscribers/:id': oтримати підписників користувача за заданим :id
+- post 'subscriptions': cтворити нову підписку
+- delete 'subscriptions/:id': видалити підписку за заданим :id
+
 ## License
 __©️ Karazin university__
